@@ -1,1 +1,21 @@
+For the v2 of the app, the following changes will be made to the schema:
 
+Users will be able to create multiple playlists instead of just one.
+Users will have multiple account types, each with different privileges (e.g. "free", "standard", and "premium").
+To migrate the schema for v2, the following steps can be taken:
+
+Add a new table User_Playlist with columns user_id and playlist_id to represent the many-to-many relationship between User and Playlist.
+Modify the User table to add a new column account_type_id to store the account type of the user.
+Update the queries and stored procedures that access or modify the affected tables to account for the new schema.
+Specifically, for the first step, the User_Playlist table will have two foreign keys to the User and Playlist tables respectively.
+This will allow multiple playlists to be associated with a user, and for a playlist to be associated with multiple users.
+
+For the second step, the User table will have a foreign key to the Account_Type table. 
+This will allow the account type of the user to be easily queried and updated.
+
+In terms of data migration, the existing data for users, playlists, and songs will need to be updated to account for the new schema.
+This can be achieved through SQL scripts that update the existing data and populate the new tables as needed.
+
+Overall, the migration process for v2 will involve making structural changes to the database schema and updating the queries and stored
+procedures that access or modify the affected tables.
+The process will also involve updating the existing data to account for the new schema.
